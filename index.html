@@ -66,7 +66,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.08;letter-spacin
 
 /* ---------- Top utility bar ---------- */
 .util{background:var(--wine-deep);color:#e9d9c9;font-size:.76rem;font-weight:600}
-.util .wrap{display:flex;justify-content:space-between;align-items:center;height:38px;gap:16px}
+.util .wrap{display:flex;justify-content:flex-end;align-items:center;height:38px;gap:16px}
 .util a{opacity:.9}.util a:hover{opacity:1;color:var(--gold-lt)}
 .util .langs{display:flex;gap:18px;align-items:center}
 .util .socials{display:flex;gap:14px;align-items:center}
@@ -78,13 +78,13 @@ h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.08;letter-spacin
 header{position:sticky;top:0;z-index:50;background:rgba(252,252,252,.94);backdrop-filter:blur(9px);
   border-bottom:1px solid var(--alabaster)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:78px;gap:20px}
-.brand{display:flex;align-items:center;gap:13px}
+.brand{display:flex;flex-direction:column;align-items:center;gap:4px}
 .brand .mark{height:44px;width:auto;flex:0 0 auto;display:block}
-.brand .name{font-family:var(--serif);font-weight:700;font-size:1rem;line-height:1.1;color:var(--wine);letter-spacing:.3px;max-width:188px}
+.brand .name{font-family:var(--serif);font-weight:700;font-size:.85rem;line-height:1.1;color:var(--wine);letter-spacing:.3px;white-space:nowrap;text-align:center}
 .brand .name span{display:block;font-family:var(--sans);font-weight:600;font-size:.6rem;letter-spacing:.22em;
   color:var(--brown);margin-top:5px;text-transform:uppercase}
 .menu{display:flex;align-items:center;gap:30px}
-.menu>a{font-weight:600;font-size:.88rem;letter-spacing:.02em;color:var(--ink);position:relative;padding:6px 0}
+.menu>a,.menu .hasmenu>a{font-weight:600;font-size:.88rem;letter-spacing:.02em;color:var(--ink);position:relative;padding:6px 0}
 .menu>a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--gold);transition:width .2s ease}
 .menu>a:hover::after{width:100%}
 .menu>a:hover{color:var(--wine)}
@@ -213,16 +213,22 @@ section{padding:88px 0}
 /* ---------- Footer ---------- */
 footer{background:var(--ink);color:#cdbfb6;font-size:.9rem}
 .foot-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;padding:64px 0 46px}
+.foot-brand{text-align:center}
+.foot-brand img{margin:0 auto}
 .foot-brand .name{font-family:var(--serif);color:#fff;font-size:1.35rem;font-weight:700;margin:14px 0 12px}
-.foot-brand p{max-width:300px;line-height:1.7;color:#b6a79d}
+.foot-brand p{max-width:300px;line-height:1.7;color:#b6a79d;margin-inline:auto}
 .foot-col h4{font-family:var(--sans);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:16px;font-weight:700}
 .foot-col a{display:block;padding:6px 0;color:#cdbfb6}
 .foot-col a:hover{color:#fff}
-.foot-social{display:flex;gap:12px;margin-top:20px}
+.foot-social{display:flex;gap:12px;margin-top:20px;justify-content:center}
 .foot-social a{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.2);display:grid;place-items:center;color:#cdbfb6}
 .foot-social a:hover{background:var(--gold);color:#1c1508;border-color:var(--gold)}
 .foot-affil{display:flex;gap:22px;align-items:center;flex-wrap:wrap;padding:22px 0;border-top:1px solid rgba(255,255,255,.09);color:#8f8078;font-size:.8rem}
 .foot-affil b{color:#b6a79d}
+.foot-read{display:flex;gap:12px 20px;align-items:center;flex-wrap:wrap;padding:18px 0;border-top:1px solid rgba(255,255,255,.09);font-size:.85rem}
+.foot-read>span{color:#8f8078;font-weight:600}
+.foot-read a{color:#cdbfb6;font-weight:600}
+.foot-read a:hover{color:#fff}
 .foot-bottom{border-top:1px solid rgba(255,255,255,.09);padding:20px 0;display:flex;justify-content:space-between;
   flex-wrap:wrap;gap:10px;color:#8f8078;font-size:.8rem}
 .foot-bottom a:hover{color:#fff}
@@ -388,16 +394,10 @@ footer{background:var(--ink);color:#cdbfb6;font-size:.9rem}
 <!-- ===== Utility bar ===== -->
 <div class="util">
   <div class="wrap">
-    <div class="langs">
-      <span style="opacity:.7">Read the Word:</span>
-      <a href="#">Hmoob Dawb</a>
-      <a href="#">Moob Leeg</a>
-      <a href="#">English</a>
-    </div>
     <div class="socials">
-      <a href="#" class="live"><span class="dot"></span> Watch Live</a>
       <a href="#" aria-label="Facebook">Facebook</a>
       <a href="#" aria-label="YouTube">YouTube</a>
+      <a href="#" aria-label="Instagram">Instagram</a>
     </div>
   </div>
 </div>
@@ -411,31 +411,10 @@ footer{background:var(--ink);color:#cdbfb6;font-size:.9rem}
     </a>
     <nav class="menu" aria-label="Primary">
       <a href="#/home" data-route="home">Home</a>
-      <span class="hasmenu"><a href="#/about" data-route="about" aria-haspopup="true">About</a>
-        <div class="dropdown">
-          <a href="#/about">About HAAC</a>
-          <a href="#/about">Our Pastor &amp; Elders</a>
-          <a href="#/beliefs">Statement of Faith</a>
-          <a href="#/contact">Contact</a>
-        </div>
-      </span>
+      <a href="#/about" data-route="about">About</a>
       <a href="#/im-new" data-route="im-new">I'm New</a>
-      <span class="hasmenu"><a href="#/ministries" data-route="ministries" aria-haspopup="true">Ministries</a>
-        <div class="dropdown">
-          <a href="#/ministries">All Ministries</a>
-          <a href="#/ministry-children">Children's Ministry</a>
-          <a href="#/ministry-youth">Youth Ministry</a>
-          <a href="#/ministry-young-adults">Young Adults</a>
-          <a href="#/ministry-single">Single Adult Ministry</a>
-          <a href="#/ministry-women">Alliance Women</a>
-          <a href="#/ministry-men">Alliance Men</a>
-          <a href="#/ministry-seniors">Senior's Ministry</a>
-        </div>
-      </span>
-      <a href="#/sermons" data-route="sermons">Sermons</a>
+      <a href="#/ministries" data-route="ministries">Ministries</a>
       <a href="#/events" data-route="events">Events</a>
-      <a href="#/groups" data-route="groups">Groups</a>
-      <a href="#/prayer" data-route="prayer">Prayer</a>
     </nav>
     <div class="nav-cta">
       <a href="#/give" class="btn btn-wine">Give</a>
@@ -458,13 +437,12 @@ footer{background:var(--ink);color:#cdbfb6;font-size:.9rem}
     <p class="hmong">Ci ntsa iab rau cov nyob hauv qhov tsaus ntuj</p>
     <p class="lede">At Hmong American Alliance Church, we are a CHRIST CENTERED church and we strive to BE THE LIGHT to those who are in darkness.</p>
     <div class="cta-row">
-      <a href="#/im-new" class="btn btn-gold">Plan Your Visit</a>
       <a href="#/sermons" class="btn btn-ghost">Watch a Service</a>
     </div>
     <div class="locator">
       <div>
         <span class="lab">Sunday Worship</span>
-        <b>Sundays · <span class="flag">[add service time]</span></b>
+        <b>Sundays · <span class="flag">10:30 AM – 12:00 PM</span></b>
       </div>
       <div>
         <span class="lab">Location</span>
@@ -474,57 +452,9 @@ footer{background:var(--ink);color:#cdbfb6;font-size:.9rem}
   </div>
 </section>
 
-<!-- ===== HAAC Online ===== -->
-<section class="online" id="online">
-  <div class="wrap grid">
-    <div>
-      <span class="eyebrow">HAAC Online</span>
-      <h2>Watch, listen, and grow — wherever you are</h2>
-      <p>Catch the latest message, revisit past sermons, and join us live each week. HAAC Online is home to our services in both Hmong and English.</p>
-      <div class="cta-row">
-        <a href="#/sermons" class="btn btn-gold">Watch Latest</a>
-        <a href="#/sermons" class="btn btn-ghost">All Messages</a>
-      </div>
-    </div>
-    <div class="player" role="img" aria-label="Latest sermon video placeholder">
-      <div class="play" aria-hidden="true"></div>
-      <div class="cap"><span>Latest Message</span><b>Be The Light in a Dark World</b></div>
-    </div>
-  </div>
-</section>
 
-<!-- ===== Ministries card row ===== -->
-<section id="ministries">
-  <div class="wrap">
-    <div class="section-head center">
-      <span class="eyebrow center">Find Your People</span>
-      <h2>Ministries for every season of life</h2>
-      <p>From our youngest children to our seniors, there's a place to belong, grow, and serve at HAAC.</p>
-    </div>
-    <div class="cardrow" id="home-min-grid"></div>
-  </div>
-</section>
+<!-- (Ministries card row removed from home — Ministries page still reachable via nav) -->
 
-<!-- ===== New here ===== -->
-<section class="newhere" id="new">
-  <div class="wrap grid">
-    <div class="photo duo-4" role="img" aria-label="Welcome / congregation photo placeholder">
-      <svg class="ph-ico" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.4" aria-hidden="true" style="width:38px;height:38px"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5M14 20c0-2 1.5-3.5 4-3.5"/></svg>
-      <span class="tag">Welcome / lobby photo</span>
-    </div>
-    <div>
-      <span class="eyebrow">New Here?</span>
-      <h2>We'd love to meet you</h2>
-      <p>Walking into a new church can feel like a big step. Here's exactly what to expect on your first Sunday — so you can relax and simply come as you are.</p>
-      <ul class="steps">
-        <li><span class="n">1</span><span>Arrive a few minutes early — greeters will help you find your way and get your kids checked in.</span></li>
-        <li><span class="n">2</span><span>Worship with us in Hmong and English. Come as you are; there's no dress code.</span></li>
-        <li><span class="n">3</span><span>Stay for coffee and fellowship, and let us welcome you personally.</span></li>
-      </ul>
-      <a href="#/im-new" class="btn btn-wine">Plan Your Visit</a>
-    </div>
-  </div>
-</section>
 
 <!-- ===== Discover more ===== -->
 <section class="bg-alabaster">
@@ -546,22 +476,12 @@ footer{background:var(--ink);color:#cdbfb6;font-size:.9rem}
         <h3>Give</h3><p>Support the ministry of HAAC and the spread of the gospel. Give securely online.</p><span class="more">Give today</span>
       </a>
 
-      <a class="dcard" href="#/about">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M4 21c0-4 3.5-6 8-6s8 2 8 6"/></svg>
-        <h3>Our Pastor &amp; Elders</h3><p>Meet the shepherds God has given to lead and care for our church.</p><span class="more">Meet the team</span>
-      </a>
-
-      <a class="dcard" href="#/beliefs">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 4h13a2 2 0 012 2v14l-4-3-4 3V6a2 2 0 00-2-2H4z"/><path d="M4 4v14"/></svg>
-        <h3>Statement of Faith</h3><p>What we believe about God, the gospel, and the Scriptures.</p><span class="more">Read more</span>
-      </a>
-
       <a class="dcard" href="#/groups">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="8" cy="9" r="2.4"/><circle cx="16" cy="9" r="2.4"/><path d="M3 19c0-2.6 2.2-4 5-4s5 1.4 5 4M13 18c.3-2 2-3 4-3s3.6 1 4 3"/></svg>
         <h3>Small Groups</h3><p>Grow in community. Find a care group that fits your life and schedule.</p><span class="more">Find a group</span>
       </a>
 
-      <a class="dcard" href="#/contact">
+      <a class="dcard" href="mailto:info@haaccma.org">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="M4 7l8 6 8-6"/></svg>
         <h3>Contact</h3><p>Questions, prayer requests, or directions — we're glad to hear from you.</p><span class="more">Reach out</span>
       </a>
@@ -577,13 +497,12 @@ footer{background:var(--ink);color:#cdbfb6;font-size:.9rem}
     <h2>There's a seat for you</h2>
     <p class="hmong">Peb zoo siab txais tos koj — We can't wait to meet you</p>
     <div class="info">
-      <div><div class="lab">Gathering</div><b>Sundays · <span class="flag">[add time]</span></b></div>
+      <div><div class="lab">Gathering</div><b>Sundays · <span class="flag">10:30 AM – 12:00 PM</span></b></div>
       <div><div class="lab">Address</div><b>2515 Maplewood Drive</b><div class="flag" style="color:#f2e7da">Maplewood, MN 55109</div></div>
       <div><div class="lab">Email</div><b>info@haaccma.org</b></div>
     </div>
     <div class="cta-row">
-      <a href="#/im-new" class="btn btn-gold">Plan Your Visit</a>
-      <a href="#/contact" class="btn btn-ghost">Get Directions</a>
+      <a href="https://maps.google.com/?q=2515+Maplewood+Drive+Maplewood+MN+55109" target="_blank" rel="noopener" class="btn btn-ghost">Get Directions</a>
     </div>
   </div>
 </section>
@@ -601,7 +520,7 @@ footer{background:var(--ink);color:#cdbfb6;font-size:.9rem}
     </div>
   </section>
   <section>
-    <div class="wrap two-col">
+    <div class="wrap">
       <div class="prose">
         <p class="lead">Come as you are. Whether it's your first time in a church or you've been walking with Jesus for years, there's a seat for you here.</p>
         <h3>What to expect</h3>
@@ -615,30 +534,13 @@ footer{background:var(--ink);color:#cdbfb6;font-size:.9rem}
         <h3>How long is the service?</h3>
         <p>Plan for about 90 minutes of worship, teaching, and prayer, followed by time to connect.</p>
       </div>
-      <div>
-        <div class="info-card">
-          <div class="row"><div class="lab">Sunday Worship</div><b>Sundays · <span style="color:#b06a2c">[add service time]</span></b></div>
-          <div class="row"><div class="lab">Location</div><b>2515 Maplewood Drive<br>Maplewood, MN 55109</b></div>
-          <div class="row"><div class="lab">Parking</div><b>Free on-site parking</b></div>
-          <div class="row"><div class="lab">Let us know you're coming</div>
-            <div data-demo-form>
-              <div class="field"><label>Your name</label><input type="text" placeholder="First and last name"></div>
-              <div class="field"><label>Email</label><input type="email" placeholder="you@email.com"></div>
-              <div class="field"><label>Which Sunday?</label><input type="date"></div>
-              <div class="field"><label>Anything we can help with?</label><textarea placeholder="Questions, kids' ages, prayer requests…"></textarea></div>
-              <button class="btn btn-wine js-send" style="width:100%;justify-content:center">Plan My Visit</button>
-              <div class="form-ok">Thank you! We've received your info and someone will reach out before your visit.</div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
   <section class="bg-alabaster">
     <div class="wrap">
       <div class="section-head center"><span class="eyebrow center">Find Us</span><h2>How to get here</h2></div>
       <div class="map-ph"><span>Google Map embed goes here<br>2515 Maplewood Drive, Maplewood, MN 55109</span></div>
-      <div style="text-align:center;margin-top:24px"><a href="#/contact" class="btn btn-ghost-dark">Get Directions</a></div>
+      <div style="text-align:center;margin-top:24px"><a href="https://maps.google.com/?q=2515+Maplewood+Drive+Maplewood+MN+55109" target="_blank" rel="noopener" class="btn btn-ghost-dark">Get Directions</a></div>
     </div>
   </section>
 </div>
@@ -712,10 +614,10 @@ footer{background:var(--ink);color:#cdbfb6;font-size:.9rem}
   <section>
     <div class="wrap">
       <div class="list">
-        <div class="litem"><div class="datechip"><div class="m">Every</div><div class="d">Sun</div></div><div><h3>Sunday Worship Service</h3><div class="meta">[Add time] · Main Sanctuary</div><p>Our weekly gathering for worship, teaching, and prayer in Hmong and English.</p></div><a href="#/im-new" class="btn btn-ghost-dark">Plan a Visit</a></div>
+        <div class="litem"><div class="datechip"><div class="m">Every</div><div class="d">Sun</div></div><div><h3>Sunday Worship Service</h3><div class="meta">10:30 AM – 12:00 PM · Main Sanctuary</div><p>Our weekly gathering for worship, teaching, and prayer in Hmong and English.</p></div><a href="#/im-new" class="btn btn-ghost-dark">Plan a Visit</a></div>
         <div class="litem"><div class="datechip"><div class="m">Wed</div><div class="d">7p</div></div><div><h3>Midweek Prayer Meeting</h3><div class="meta">Wednesdays · Fellowship Hall</div><p>Come pray with the family of God for our church, community, and world.</p></div><a href="#/prayer" class="btn btn-ghost-dark">Details</a></div>
         <div class="litem"><div class="datechip"><div class="m">Aug</div><div class="d">15</div></div><div><h3>Youth Summer Night</h3><div class="meta">6:00 PM · Youth Room</div><p>Games, worship, and a message for students grades 6–12. Bring a friend!</p></div><a href="#" class="btn btn-ghost-dark">RSVP</a></div>
-        <div class="litem"><div class="datechip"><div class="m">Aug</div><div class="d">24</div></div><div><h3>Baptism &amp; Membership Sunday</h3><div class="meta">During service · Main Sanctuary</div><p>Celebrating those taking their next step of faith. Interested? Let us know.</p></div><a href="#/contact" class="btn btn-ghost-dark">I'm Interested</a></div>
+        <div class="litem"><div class="datechip"><div class="m">Aug</div><div class="d">24</div></div><div><h3>Baptism &amp; Membership Sunday</h3><div class="meta">During service · Main Sanctuary</div><p>Celebrating those taking their next step of faith. Interested? Let us know.</p></div><a href="mailto:info@haaccma.org" class="btn btn-ghost-dark">I'm Interested</a></div>
       </div>
       <p class="form-note" style="text-align:center;margin-top:30px">Connect this list to your church calendar (Google Calendar, Planning Center, or Tithely Events) so it updates itself.</p>
     </div>
@@ -790,7 +692,7 @@ footer{background:var(--ink);color:#cdbfb6;font-size:.9rem}
       <div>
         <div class="info-card" style="position:static">
           <div class="row"><div class="lab">How it works</div><b style="font-size:1.1rem">Every request is prayed over</b><p style="color:var(--brown);font-size:.9rem;margin-top:8px">Submissions route to our care team, who pray and can follow up if you've asked them to.</p></div>
-          <div class="row"><div class="lab">Need to talk to someone?</div><a href="#/contact" class="btn btn-ghost-dark">Contact a Pastor</a></div>
+          <div class="row"><div class="lab">Need to talk to someone?</div><a href="mailto:info@haaccma.org" class="btn btn-ghost-dark">Contact a Pastor</a></div>
         </div>
       </div>
     </div>
@@ -873,7 +775,6 @@ footer{background:var(--ink);color:#cdbfb6;font-size:.9rem}
         <div class="person"><div class="photo duo-2"><span class="tag">Elder photo</span></div><h3>[Elder Name]</h3><div class="role">Board of Elders</div></div>
         <div class="person"><div class="photo duo-4"><span class="tag">Elder photo</span></div><h3>[Elder Name]</h3><div class="role">Board of Elders</div></div>
       </div>
-      <div style="text-align:center;margin-top:34px"><a href="#/beliefs" class="btn btn-ghost-dark">Read Our Statement of Faith</a></div>
     </div>
   </section>
   <section>
@@ -883,61 +784,24 @@ footer{background:var(--ink);color:#cdbfb6;font-size:.9rem}
     </div>
   </section>
 </div>
-
-
-<!-- ================= BELIEFS ================= -->
-<div class="page" data-route="beliefs" data-title="What We Believe — HAAC" hidden>
+<!-- ================= PRIVACY ================= -->
+<div class="page" data-route="privacy" data-title="Privacy Policy — HAAC" hidden>
   <section class="page-hero">
     <div class="wrap">
-      <span class="eyebrow">Statement of Faith</span>
-      <h1>What We Believe</h1>
-      <p>The core truths that anchor our church and our life together in Christ.</p>
+      <span class="eyebrow">Legal</span>
+      <h1>Privacy Policy</h1>
+      <p>How Hmong American Alliance Church handles the information you share with us.</p>
     </div>
   </section>
   <section>
-    <div class="wrap" style="max-width:800px;margin-inline:auto">
-      <details class="acc" open><summary>God</summary><div class="acc-body">There is one God, eternally existing in three persons — Father, Son, and Holy Spirit.</div></details>
-      <details class="acc"><summary>The Scriptures</summary><div class="acc-body">The Bible is the inspired, authoritative Word of God, our guide for faith and life.</div></details>
-      <details class="acc"><summary>Salvation</summary><div class="acc-body">Salvation is by grace through faith in Jesus Christ, who died and rose again for our redemption.</div></details>
-      <details class="acc"><summary>The Church</summary><div class="acc-body">The Church is the body of Christ, called to worship God, disciple believers, and share the gospel.</div></details>
-      <details class="acc"><summary>Our Hope</summary><div class="acc-body">We look forward to the return of Christ and the hope of eternal life with Him.</div></details>
-      <p class="form-note">Replace this summary with HAAC's official Statement of Faith and the Christian &amp; Missionary Alliance doctrinal statement.</p>
-    </div>
-  </section>
-</div>
-
-
-<!-- ================= CONTACT ================= -->
-<div class="page" data-route="contact" data-title="Contact — HAAC" hidden>
-  <section class="page-hero">
-    <div class="wrap">
-      <span class="eyebrow">Get In Touch</span>
-      <h1>Contact Us</h1>
-      <p>Questions, prayer requests, or directions — we're always glad to hear from you.</p>
-    </div>
-  </section>
-  <section>
-    <div class="wrap two-col">
-      <div>
-        <div class="card-soft" style="background:#fff;border:1px solid var(--alabaster);border-radius:6px;padding:28px" data-demo-form>
-          <h2 style="color:var(--wine);font-size:1.6rem;margin-bottom:16px">Send us a message</h2>
-          <div class="field"><label>Name</label><input type="text" placeholder="First and last name"></div>
-          <div class="field"><label>Email</label><input type="email" placeholder="you@email.com"></div>
-          <div class="field"><label>Subject</label><input type="text" placeholder="How can we help?"></div>
-          <div class="field"><label>Message</label><textarea placeholder="Write your message…"></textarea></div>
-          <button class="btn btn-wine js-send" style="width:100%;justify-content:center">Send Message</button>
-          <div class="form-ok">Thank you for reaching out! We'll get back to you soon.</div>
-        </div>
-      </div>
-      <div>
-        <div class="info-card" style="position:static">
-          <div class="row"><div class="lab">Address</div><b>2515 Maplewood Drive<br>Maplewood, MN 55109</b></div>
-          <div class="row"><div class="lab">Email</div><b>info@haaccma.org</b></div>
-          <div class="row"><div class="lab">Phone</div><b>[Add phone number]</b></div>
-          <div class="row"><div class="lab">Sunday Worship</div><b>Sundays · [add time]</b></div>
-        </div>
-        <div class="map-ph" style="margin-top:20px"><span>Google Map embed goes here</span></div>
-      </div>
+    <div class="wrap prose">
+      <p class="lead">[Add your church's privacy policy text here.]</p>
+      <h3>Information we collect</h3>
+      <p>Describe what information visitors provide — for example, through the contact or prayer forms — and how it is collected.</p>
+      <h3>How we use it</h3>
+      <p>Explain how the church uses submitted information, and that it is never sold or shared with outside parties.</p>
+      <h3>Questions</h3>
+      <p>For any questions about this policy, email info@haaccma.org.</p>
     </div>
   </section>
 </div>
@@ -956,6 +820,7 @@ footer{background:var(--ink);color:#cdbfb6;font-size:.9rem}
         <div class="foot-social">
           <a href="#" aria-label="Facebook">f</a>
           <a href="#" aria-label="YouTube">▶</a>
+          <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
         </div>
       </div>
       <div class="foot-col">
@@ -967,17 +832,23 @@ footer{background:var(--ink);color:#cdbfb6;font-size:.9rem}
         <a href="#/ministry-children">Children</a><a href="#/ministry-youth">Youth</a><a href="#/ministry-young-adults">Young Adults</a><a href="#/ministry-women">Women</a><a href="#/ministry-men">Men</a><a href="#/ministry-seniors">Seniors</a>
       </div>
       <div class="foot-col">
-        <h4>Visit Us</h4>
+        <h4>Contact</h4>
         <p style="color:#b6a79d;line-height:1.8">2515 Maplewood Drive<br>Maplewood, MN 55109<br>info@haaccma.org</p>
+        <a href="#/privacy">Privacy Policy</a>
       </div>
     </div>
     <div class="foot-affil">
-      <span>In partnership with</span>
+      <span>Affiliated with</span>
       <b>The Hmong District</b><span>·</span><b>The Christian &amp; Missionary Alliance</b>
+    </div>
+    <div class="foot-read">
+      <span>Read the Word:</span>
+      <a href="#">Hmoob Dawb</a>
+      <a href="#">Moob Leeg</a>
+      <a href="#">English</a>
     </div>
     <div class="foot-bottom">
       <span>© 2026 Hmong American Alliance Church. All rights reserved.</span>
-      <a href="#">Privacy Policy</a>
     </div>
   </div>
 </footer>
@@ -988,13 +859,9 @@ footer{background:var(--ink);color:#cdbfb6;font-size:.9rem}
     <button class="close" id="close" aria-label="Close menu">×</button>
     <a href="#/home">Home</a>
     <a href="#/im-new">I'm New</a>
-    <div class="sub">Ministries</div>
-    <a href="#/ministries">All Ministries</a>
-    <a href="#/ministry-children">Children's Ministry</a><a href="#/ministry-youth">Youth Ministry</a><a href="#/ministry-young-adults">Young Adults</a>
-    <a href="#/ministry-single">Single Adult Ministry</a><a href="#/ministry-women">Alliance Women</a><a href="#/ministry-men">Alliance Men</a><a href="#/ministry-seniors">Senior's Ministry</a>
+    <a href="#/ministries">Ministries</a>
     <div class="sub">More</div>
-    <a href="#/sermons">Sermons</a><a href="#/events">Events</a><a href="#/groups">Groups</a><a href="#/prayer">Prayer</a>
-    <a href="#/about">About</a><a href="#/beliefs">Statement of Faith</a><a href="#/contact">Contact</a>
+    <a href="#/events">Events</a><a href="#/about">About</a>
     <a href="#/give" class="btn btn-wine" style="margin-top:18px;justify-content:center">Give</a>
   </div>
 </div>
@@ -1006,7 +873,7 @@ const MINISTRIES=[
    tag:'Safe, joyful spaces where kids meet Jesus and are loved by name.',
    blurb:'From the nursery through 5th grade, we partner with parents to help children know they are loved by God and by their church family.',
    does:'Age-appropriate Bible teaching, worship, games, and memory verses every Sunday, plus special events throughout the year.',
-   who:'Infants through 5th graders. Secure check-in keeps every child safe and accounted for.',meets:'Sundays during worship · [add time]'},
+   who:'Infants through 5th graders. Secure check-in keeps every child safe and accounted for.',meets:'Sundays during worship · 10:30 AM – 12:00 PM'},
   {id:'youth',name:'Youth Ministry',sub:'Grades 6 – 12',duo:'duo-2',
    tag:'Students building real faith and real friendships as they follow Christ.',
    blurb:'Middle and high schoolers grow together through worship, teaching, and honest conversation about following Jesus in the real world.',
@@ -1036,15 +903,18 @@ const MINISTRIES=[
    tag:'Fellowship, care, and continued purpose for our honored seniors.',
    blurb:'Our senior members remain a vital part of our church family, with fellowship and care tailored to this season of life.',
    does:'Gatherings, meals, Bible study, and mutual care and prayer.',
-   who:'Our senior members and their friends.',meets:'[Add meeting day & time]'}
+   who:'Our senior members and their friends.',meets:'[Add meeting day & time]'},
+  {id:'care-group',name:'Care Group',sub:'Grow Together',duo:'duo-4',
+   tag:'Small groups meeting through the week to study Scripture, pray, and care for one another.',
+   href:'#/groups',nopage:true}
 ];
 
 const CARD_ICO='<svg class="ph-ico" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" aria-hidden="true"><path d="M12 3v18M5 8l7-5 7 5"/></svg>';
 
 function ministryCard(m){
-  return '<a class="mcard" href="#/ministry-'+m.id+'">'+
+  return '<a class="mcard" href="'+(m.href||('#/ministry-'+m.id))+'">'+
     '<div class="photo '+m.duo+'">'+CARD_ICO+'<span class="tag">'+m.name+' photo</span></div>'+
-    '<div class="body"><span class="sub">'+m.sub+'</span><h3>'+m.name+'</h3><p>'+m.tag+'</p><span class="more">Learn more</span></div></a>';
+    '<div class="body"><span class="sub">'+m.sub+'</span><h3>'+m.name+'</h3><p>'+m.tag+'</p></div></a>';
 }
 
 function ministryPage(m){
@@ -1058,7 +928,7 @@ function ministryPage(m){
     '<div><div class="info-card">'+
     '<div class="row"><div class="lab">When we meet</div><b>'+m.meets+'</b></div>'+
     '<div class="row"><div class="lab">Ministry lead</div><b>[Add leader name]</b></div>'+
-    '<div class="row"><div class="lab">Get connected</div><a class="btn btn-wine" href="#/contact">Contact Us</a></div>'+
+    '<div class="row"><div class="lab">Get connected</div><a class="btn btn-wine" href="mailto:info@haaccma.org">Contact Us</a></div>'+
     '</div></div></div></section>'+
     '<section class="bg-alabaster"><div class="wrap"><div class="photo '+m.duo+'" style="border-radius:6px;aspect-ratio:21/9"><span class="tag">'+m.name+' photo</span></div></div></section>';
 }
@@ -1072,6 +942,7 @@ function ministryPage(m){
   if(overviewGrid) overviewGrid.innerHTML=cards;
   var app=document.getElementById('app');
   MINISTRIES.forEach(function(m){
+    if(m.nopage) return;
     var d=document.createElement('div');
     d.className='page'; d.setAttribute('data-route','ministry-'+m.id);
     d.setAttribute('data-title', m.name+' — HAAC'); d.hidden=true;
@@ -1088,8 +959,7 @@ function route(){
   if(!target){ target=document.querySelector('#app .page[data-route="home"]'); h='home'; }
   pages.forEach(function(p){ p.hidden = (p!==target); });
   window.scrollTo(0,0);
-  var top = h.indexOf('ministry-')===0 ? 'ministries'
-          : (h==='beliefs'||h==='contact') ? 'about' : h;
+  var top = (h.indexOf('ministry-')===0 || h==='groups') ? 'ministries' : h;
   document.querySelectorAll('.menu [data-route]').forEach(function(a){
     a.classList.toggle('active', a.getAttribute('data-route')===top);
   });
